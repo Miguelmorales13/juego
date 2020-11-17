@@ -3,9 +3,7 @@ class GameDead extends HTMLElement {
   constructor() {
     super();
     let shadow = this.attachShadow({ mode: "open" });
-    let id = `game${Math.random()}`;
-    let canvas = document.createElement("canvas", { id });
-    canvas.setAttribute("id", id);
+    let canvas = document.createElement("canvas");
     shadow.appendChild(canvas);
     const game = new Game(
       canvas,

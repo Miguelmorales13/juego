@@ -3,10 +3,10 @@ class Game {
   canvasHeight = 400;
   canvas;
   floor = 250;
-  stopped = false;
+  stopped = true;
   status = 0;
   points = 0;
-  speed = 2;
+  speed = 0;
   images = {
     principal: "",
     enemy: "",
@@ -22,10 +22,12 @@ class Game {
   constructor(canvas, principal, cloud, enemy, enemyWalk, background) {
     this.canvas = canvas;
     this.context = canvas.getContext("2d");
+    this.canvas.width = this.canvasWidth;
+    this.canvas.height = this.canvasHeight;
     this.images = { principal, enemy, enemyWalk, background, cloud };
 
     this.setAllObjects();
-    this.cloud.setSpeed(1);
+    this.setSpeed(0);
   }
 
   listen() {
@@ -42,10 +44,6 @@ class Game {
     this.principal.setSpeed(speed);
     this.background.setSpeed(speed);
   }
-  cleanCanvas() {
-    this.canvas.width = this.canvasWidth;
-    this.canvas.height = this.canvasHeight;
-  }
   drawPoints() {
     this.context.font = "30px impact";
     this.context.fillStyle = "#f2f2f2";
@@ -59,7 +57,6 @@ class Game {
   }
 
   drawn() {
-    this.cleanCanvas();
     this.background.draw();
     this.principal.draw();
     this.enemy.draw();
